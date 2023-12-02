@@ -1,5 +1,6 @@
 package aoc2022.day2
 
+import SolutionMenu
 import readFileLines
 import java.util.stream.Stream
 
@@ -52,16 +53,20 @@ enum class Outcome(val code: Char, val points: Int) {
 }
 
 fun main() {
-    val data = readFileLines("/Users/stefanconsid/IdeaProjects/AdventOfCode-Day1/src/main/kotlin/aoc2022/day2/data.txt")
+    val data = readFileLines(
+        path = "src/main/kotlin/aoc2022/day2/data.txt",
+        relative = true
+    )
 
-    // P1
-    //println("Part1: ${solutionPart1(data)}")
+    SolutionMenu(
+        title = "2022 Day 2",
+        onP1Selected = { solutionPart1(data) },
+        onP2Selected = { solutionPart2(data) }
+    )
 
-    // P2
-    println("Part2: ${solutionPart2(data)}")
 }
 
-fun solutionPart1(dataSet: Stream<String>): Int {
+fun solutionPart1(dataSet: Stream<String>) {
     fun handleLine(line: String): Int {
         val their = idToShape(line[0])
         val our = idToShape(line[2])
@@ -78,7 +83,7 @@ fun solutionPart1(dataSet: Stream<String>): Int {
     dataSet.forEachOrdered { line ->
         scoreSum += handleLine(line)
     }
-    return scoreSum
+    println(scoreSum)
 }
 
 fun idToShape(char: Char): Shape? {
@@ -94,7 +99,7 @@ fun idToShape(char: Char): Shape? {
     }
 }
 
-fun solutionPart2(dataSet: Stream<String>): Int {
+fun solutionPart2(dataSet: Stream<String>) {
     fun handleLine(line: String): Int {
         val their = idToShape(line[0])
         val desiredOutcome = Outcome.decodeOutcome(line[2])
@@ -110,5 +115,5 @@ fun solutionPart2(dataSet: Stream<String>): Int {
     dataSet.forEachOrdered { line ->
         scoreSum += handleLine(line)
     }
-    return scoreSum
+    println(scoreSum)
 }
