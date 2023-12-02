@@ -7,8 +7,8 @@ fun SolutionMenu(
 ) {
     println("\uD83C\uDF84\uD83C\uDF84Advent of Code\uD83C\uDF84\uD83C\uDF84")
     println("\uD83C\uDF84\uD83C\uDF84Welcome to $title\uD83C\uDF84\uD83C\uDF84")
-    print("Choose solution\nSolution 1 (1)\nSolution 2 (2)\nTest Solution 1 (3)\nTest Solution 2 (4)\n: ")
-
+    println("Choose solution\n1: Solution 1\n2: Solution 2\n3: Solution 1 (TEST)\n4: Solution 2 (TEST)")
+    print("Choose: ")
 
     try {
         when(readln().toInt()) {
