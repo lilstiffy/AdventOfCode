@@ -19,6 +19,7 @@ fun SolutionMenu(
             else -> println("Man you can't choose anything else")
         }
     } catch (e: NumberFormatException) {
+        throw e
         println("Man you can't choose anything other than 1, 2, 3, 4 for real stop trying")
     }
 
