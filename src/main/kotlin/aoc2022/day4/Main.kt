@@ -17,8 +17,8 @@ fun main() {
 
     SolutionMenu(
         title = "2022 Day 4",
-        onP1Selected = { solution1(if (it) testData else data) },
-        onP2Selected = { solution2(if (it) testData else data) }
+        solutionOneSelected = { solution1(if (it) testData else data) },
+        solutionTwoSelected = { solution2(if (it) testData else data) }
     )
 }
 

@@ -11,14 +11,26 @@ fun main() {
     val testData = readFileLines(path = "src/main/kotlin/aoc2023/day3/test-data.txt", relative = true)
     SolutionMenu(
         title = "2023 Day 3",
-        onP1Selected = { test -> if (test) solution1(testData) else solution1(data) },
-        onP2Selected = { test -> if (test) solution2(testData) else solution2(data) }
+        solutionOneSelected = { test -> if (test) solution1(testData) else solution1(data) },
+        solutionTwoSelected = { test -> if (test) solution2(testData) else solution2(data) }
     )
 }
 private fun solution1(data: Stream<String>) {
     var partSum = 0
     var currentLineIdx = 0
     val dataList = data.aocToList()
+
+    fun onNumberFinishedHandling(start: Int, end: Int, charBuffer: String) {
+        val validPtNr = anySymbolAdjacent(
+            forIndices = Pair(start, end),
+            currentLine = currentLineIdx,
+            dataList
+        )
+        if (validPtNr) {
+            partSum += charBuffer.toInt()
+            println("adding to ${charBuffer.toInt()} to partSum")
+        }
+    }
     
     dataList.forEach { line ->
         var start: Int? = null
@@ -33,20 +45,19 @@ private fun solution1(data: Stream<String>) {
             } else {
                 if (start != null) {
                     end = idx
-                    val validPtNr = anySymbolAdjacent(
-                        forIndices = Pair(start!!, end!!),
-                        currentLine = currentLineIdx,
-                        dataList
-                    )
-                    if (validPtNr) {
-                        partSum += charBuffer.toInt()
-                        println("adding to ${charBuffer.toInt()} to partSum")
-                    }
+                    onNumberFinishedHandling(start!!, end!!, charBuffer)
                     start = null
                     end = null
                     charBuffer = ""
                 }
             }
+        }
+        start?.let {
+            // In case number ends on last index of line
+            onNumberFinishedHandling(it, line.lastIndex, charBuffer)
+            start = null
+            end = null
+            charBuffer = ""
         }
         currentLineIdx++
     }
@@ -70,16 +81,15 @@ private fun anySymbolAdjacent(
     val safeRangeEnd = if (forIndices.second == data[currentLine].lastIndex) data[currentLine].lastIndex else  forIndices.second + 1
 
     if (!isFirstLine)
-        if (data[currentLine-1].subSequence(safeRangeStart, safeRangeEnd).any { it.isSpecialCharacter()} )
+        if (data[currentLine - 1].subSequence(safeRangeStart, safeRangeEnd).any { it.isSpecialCharacter()} )
             symbolAdjacent = true
 
     if (!isLastLine)
-        if (data[currentLine+1].subSequence(safeRangeStart, safeRangeEnd).any { it.isSpecialCharacter()} )
+        if (data[currentLine + 1].subSequence(safeRangeStart, safeRangeEnd).any { it.isSpecialCharacter()} )
             symbolAdjacent = true
 
     if (data[currentLine].subSequence(safeRangeStart, safeRangeEnd).any { it.isSpecialCharacter()} )
         symbolAdjacent = true
-
 
 
     return symbolAdjacent

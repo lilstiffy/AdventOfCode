@@ -60,8 +60,8 @@ fun main() {
 
     SolutionMenu(
         title = "2022 Day 2",
-        onP1Selected = { solutionPart1(data) },
-        onP2Selected = { solutionPart2(data) }
+        solutionOneSelected = { solutionPart1(data) },
+        solutionTwoSelected = { solutionPart2(data) }
     )
 
 }
