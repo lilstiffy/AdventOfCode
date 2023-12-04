@@ -1,7 +1,7 @@
 package aoc2022.day2
 
-import SolutionMenu
-import readFileLines
+import utils.SolutionMenu
+import utils.readFileLines
 import java.util.stream.Stream
 
 enum class Shape(val code: Char, val points: Int) {

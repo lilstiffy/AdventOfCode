@@ -1,6 +1,6 @@
 package aoc2023.day1
 
-import readFileLines
+import utils.readFileLines
 
 
 fun main() {

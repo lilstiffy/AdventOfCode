@@ -1,6 +1,6 @@
 package aoc2022.day3
 
-import readFileLines
+import utils.readFileLines
 import java.util.stream.Stream
 
 val items: List<Char> = ('a'..'z').toList()

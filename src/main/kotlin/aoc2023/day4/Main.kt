@@ -1,8 +1,8 @@
 package aoc2023.day4
 
-import SolutionMenu
+import utils.SolutionMenu
 import extensions.aocToList
-import readFileLines
+import utils.readFileLines
 import java.util.stream.Stream
 import kotlin.math.pow
 
@@ -83,7 +83,7 @@ private fun solution2(data: Stream<String>) {
             data = Pair(firstPart, secondPart)
         )
         scratchCards++
-        if (scratchCards % 1000 == 0)
+        if (scratchCards % 100000 == 0)
             println(scratchCards)
 
         processScratchCard(idx, scratchCard)

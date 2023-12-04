@@ -1,6 +1,6 @@
 package aoc2022.day1
 
-import readFileLines
+import utils.readFileLines
 import java.util.stream.Stream
 
 fun main() {

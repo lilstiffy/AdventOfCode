@@ -1,9 +1,9 @@
 package aoc2023.day3
 
-import SolutionMenu
+import utils.SolutionMenu
 import aoc2022.day4.solution2
 import extensions.aocToList
-import readFileLines
+import utils.readFileLines
 import java.util.stream.Stream
 
 fun main() {
